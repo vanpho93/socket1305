@@ -15,4 +15,5 @@ server.listen(3000, () => console.log('Server started!'));
 
 io.on('connection', socket => {
     console.log(socket.id);
+    socket.on('CLIENT_SEND_MESSAGE', msg => io.emit('SERVER_SEND_MESSAGE', msg));
 });
