@@ -11,7 +11,7 @@ app.use(express.static('public'));
 
 app.get('/', (req, res) => res.render('home'));
 
-server.listen(3000, () => console.log('Server started!'));
+server.listen(process.env.PORT || 3000, () => console.log('Server started!'));
 
 io.on('connection', socket => {
     console.log(socket.id);
