@@ -4,9 +4,11 @@ socket.on('SERVER_SEND_MESSAGE', value => {
 });
 
 socket.on('SERVER_REFUSE', () => alert('Please choose another username'));
-socket.on('SERVER_ACCEPT', () => {
+socket.on('SERVER_ACCEPT', arrUser => {
     $('#div-chat').show();
     $('#div-sign-up').hide();
+    arrUser.forEach(e => $('#listUser').append(`<li>${e.username}</li>`));
+    socket.on('NEW_USER', user => $('#listUser').append(`<li>${user.username}</li>`));
 });
 
 $('#div-chat').hide();

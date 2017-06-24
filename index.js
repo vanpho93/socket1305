@@ -14,8 +14,10 @@ io.on('connection', socket => {
     socket.on('CLIENT_SIGN_UP', username => {
         const isExist = arrUser.some(e => e.username === username);
         if (isExist) return socket.emit('SERVER_REFUSE');
-        arrUser.push(new User(socket.id, username));
-        socket.emit('SERVER_ACCEPT');
+        const user = new User(socket.id, username);
+        socket.emit('SERVER_ACCEPT', arrUser);
+        arrUser.push(user);
+        io.emit('NEW_USER', user);
     });
 
     socket.on('CLIENT_SEND_MESSAGE', msg => io.emit('SERVER_SEND_MESSAGE', msg));
