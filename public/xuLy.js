@@ -1,11 +1,9 @@
 const socket = io();
-socket.on('SERVER_SEND_MESSAGE', value => console.log(value));
+socket.on('SERVER_SEND_MESSAGE', value => {
+    $('#listMessage').append(`<li>${value}</li>`)
+});
 
-// $('#btnSend').click(() => {
-//     const msg = $('#txtMessage').val();
-//     $('#txtMessage').val('')
-//     socket.emit('CLIENT_SEND_MESSAGE', msg);
-// });
+$('#div-chat').hide();
 
 function sendText(event) {
     event.preventDefault();
@@ -13,4 +11,3 @@ function sendText(event) {
     $('#txtMessage').val('')
     socket.emit('CLIENT_SEND_MESSAGE', msg);
 }
-

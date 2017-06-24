@@ -9,11 +9,19 @@
     </head>
     <body>
         <h1>Khoa Pham training</h1>
-        <form onsubmit="sendText(event);">
-            <input type="text" placeholder="Enter your message" id="txtMessage">
+        <div id="div-chat">
+            <form onsubmit="sendText(event);">
+                <input type="text" placeholder="Enter your message" id="txtMessage">
+                <br><br>
+                <button id="btnSend">Send Message</button>
+            </form>
+            <ul id="listMessage"></ul>
+        </div>
+        <div id="div-sign-up">
+            <input type="text" placeholder="Enter your username" id="txtUsername">
             <br><br>
-            <button id="btnSend">Send Message</button>
-        </form>
+            <button id="btnSend">Sign Up</button>
+        </div>
     </body>
     <script src="xuLy.js"></script>
 </html>
