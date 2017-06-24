@@ -8,7 +8,7 @@ app.use(express.static('public'));
 app.get('/', (req, res) => res.render('home'));
 server.listen(process.env.PORT || 3000, () => console.log('Server started!'));
 
-const arrUser = [];
+let arrUser = [];
 
 io.on('connection', socket => {
     socket.on('CLIENT_SIGN_UP', username => {
@@ -21,6 +21,11 @@ io.on('connection', socket => {
     });
 
     socket.on('CLIENT_SEND_MESSAGE', msg => io.emit('SERVER_SEND_MESSAGE', msg));
+
+    socket.on('disconnect', () => {
+        io.emit('USER_DISCONNECT', socket.id);
+        arrUser = arrUser.filter(e => e.id !== socket.id);
+    });
 });
 
 class User {

@@ -7,8 +7,12 @@ socket.on('SERVER_REFUSE', () => alert('Please choose another username'));
 socket.on('SERVER_ACCEPT', arrUser => {
     $('#div-chat').show();
     $('#div-sign-up').hide();
-    arrUser.forEach(e => $('#listUser').append(`<li>${e.username}</li>`));
-    socket.on('NEW_USER', user => $('#listUser').append(`<li>${user.username}</li>`));
+    arrUser.forEach(e => $('#listUser').append(`<li id="user-${e.id}">${e.username}</li>`));
+    socket.on('NEW_USER', user => $('#listUser').append(`<li id="user-${user.id}">${user.username}</li>`));
+});
+
+socket.on('USER_DISCONNECT', socketId => {
+    $(`#user-${socketId}`).remove();
 });
 
 $('#div-chat').hide();
