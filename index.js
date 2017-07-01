@@ -29,6 +29,22 @@ io.on('connection', socket => {
             .emit('SERVER_SEND_PRIVATE_MESSAGE',`${socket.username}: ${msg}`)
     });
 
+    socket.on('CLIENT_JOIN_ROOM', idRoom => {
+        if (socket.myRoom) {
+            socket.leave(socket.myRoom, () => {
+                socket.myRoom = idRoom;
+                socket.join(idRoom);
+            });
+        }
+        socket.myRoom = idRoom;
+        socket.join(idRoom);
+    });
+
+    socket.on('ROOM_MESSAGE', msg => {
+        if (!socket.myRoom) return;
+        io.in(socket.myRoom).emit('SERVER_SEND_MESSAGE', msg);
+    });
+
     socket.on('disconnect', () => {
         io.emit('USER_DISCONNECT', socket.id);
         arrUser = arrUser.filter(e => e.id !== socket.id);
