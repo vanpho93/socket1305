@@ -1,5 +1,5 @@
 const socket = io();
-let id;
+let idRemote;
 
 socket.on('SERVER_SEND_MESSAGE', value => {
     $('#listMessage').append(`<li>${value}</li>`)
@@ -35,5 +35,5 @@ $('#listUser').on('click', 'li', function() {
     $('#listUser li').removeClass('active');
     $(this).addClass('active');
     const idAttr = $(this).attr('id');
-    const id = idAttr.substring(5);
+    idRemote = idAttr.substring(5);
 });
