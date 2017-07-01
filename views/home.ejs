@@ -10,6 +10,14 @@
             .active {
                 color: red;
             }
+            #div-list {
+                display: flex;
+                flex-direction: row-reverse;
+                justify-content: space-between;
+            }
+            hr {
+                visibility: hidden;
+            }
         </style>    
     </head>
     <body>
@@ -21,11 +29,29 @@
                 <button id="btnSend">Send Message</button>
             </form>
             <button id="btnSendPrivate">Send Private Message</button>
-            <label>Message:</label>
-            <ul id="listMessage"></ul>
+            <br>
+            <button id="btnSendRoom">Send In Room</button>
             <hr>
-            <label>Online User:</label>
-            <ul id="listUser"></ul>
+            <div id="div-list">
+                <div>
+                    <label>Messages:</label>
+                    <ul id="listMessage">
+                    </ul>
+                </div>
+                <div>
+                    <label>Online Users:</label>
+                    <ul id="listUser">
+                    </ul>
+                </div>
+                <div>
+                    <label>List Room</label>
+                    <ul>
+                        <li>An choi</li>
+                        <li>Hoc Tap</li>
+                        <li>Cong viec</li>
+                    </ul>
+                </div>
+            </div>
         </div>
         <div id="div-sign-up">
             <input type="text" placeholder="Enter your username" id="txtUsername">
