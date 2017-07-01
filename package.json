@@ -12,5 +12,9 @@
   },
   "scripts": {
     "start": "node index"
+  },
+  "devDependencies": {
+    "jquery": "^3.2.1",
+    "socket.io-client": "^2.0.3"
   }
 }
