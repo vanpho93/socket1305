@@ -1,4 +1,6 @@
 const socket = io();
+let id;
+
 socket.on('SERVER_SEND_MESSAGE', value => {
     $('#listMessage').append(`<li>${value}</li>`)
 });
@@ -27,4 +29,11 @@ function sendText(event) {
 $('#btnSignUp').click(() => {
     const username = $('#txtUsername').val();
     socket.emit('CLIENT_SIGN_UP', username);
+});
+
+$('#listUser').on('click', 'li', function() {
+    $('#listUser li').removeClass('active');
+    $(this).addClass('active');
+    const idAttr = $(this).attr('id');
+    const id = idAttr.substring(5);
 });
