@@ -46,3 +46,9 @@ $('#btnSendPrivate').click(() => {
     const msg = $('#txtMessage').val();
     socket.emit('PRIVATE_MESSAGE', { idRemote, msg });
 });
+
+$('.li-room').click(function() {
+    const idRoom = $(this).attr('id');
+    $('.li-room').removeClass('activeRoom');
+    $(this).addClass('activeRoom');
+});

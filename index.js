@@ -25,7 +25,7 @@ io.on('connection', socket => {
 
     socket.on('PRIVATE_MESSAGE', msgObj => {
         const { idRemote, msg } = msgObj;
-        socket.to(idRemote)
+        io.in(idRemote).in(socket.id)
             .emit('SERVER_SEND_PRIVATE_MESSAGE',`${socket.username}: ${msg}`)
     });
 
@@ -42,4 +42,5 @@ class User {
     }
 }
 
-//
+    // let rooms = Objects.keys(socket.rooms);
+    // console.log(rooms); // [ <socket.id>, 'room 237' ]
