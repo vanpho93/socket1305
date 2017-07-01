@@ -5,6 +5,10 @@ socket.on('SERVER_SEND_MESSAGE', value => {
     $('#listMessage').append(`<li>${value}</li>`)
 });
 
+socket.on('SERVER_SEND_PRIVATE_MESSAGE', value => {
+    $('#listMessage').append(`<li>${value}</li>`)
+});
+
 socket.on('SERVER_REFUSE', () => alert('Please choose another username'));
 socket.on('SERVER_ACCEPT', arrUser => {
     $('#div-chat').show();
@@ -36,4 +40,9 @@ $('#listUser').on('click', 'li', function() {
     $(this).addClass('active');
     const idAttr = $(this).attr('id');
     idRemote = idAttr.substring(5);
+});
+
+$('#btnSendPrivate').click(() => {
+    const msg = $('#txtMessage').val();
+    socket.emit('PRIVATE_MESSAGE', { idRemote, msg });
 });

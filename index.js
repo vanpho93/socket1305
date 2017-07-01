@@ -23,6 +23,12 @@ io.on('connection', socket => {
 
     socket.on('CLIENT_SEND_MESSAGE', msg => io.emit('SERVER_SEND_MESSAGE', `${socket.username}: ${msg}`));
 
+    socket.on('PRIVATE_MESSAGE', msgObj => {
+        const { idRemote, msg } = msgObj;
+        socket.to(idRemote)
+            .emit('SERVER_SEND_PRIVATE_MESSAGE',`${socket.username}: ${msg}`)
+    });
+
     socket.on('disconnect', () => {
         io.emit('USER_DISCONNECT', socket.id);
         arrUser = arrUser.filter(e => e.id !== socket.id);
