@@ -2,7 +2,7 @@ const io = require('socket.io-client');
 const $ = require('jquery');
 const handleOnlineUser = require('./handleOnlineUser');
 
-const socket = io();
+const socket = io('http://localhost:3000');
 let idRemote;
 
 handleOnlineUser(socket);

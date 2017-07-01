@@ -1,12 +1,4 @@
-const express = require('express');
-const app = express();
-const server = require('http').Server(app);
-const io = require('socket.io')(server);
-app.set('view engine', 'ejs');
-app.set('views', './views');
-app.use(express.static('public'));
-app.get('/', (req, res) => res.render('home'));
-server.listen(process.env.PORT || 3000, () => console.log('Server started!'));
+const io = require('socket.io')(3000);
 
 let arrUser = [];
 
